@@ -46,13 +46,66 @@ top_250_array[0..3].each_with_index do |link, i|
 end
 #"#{i+1}"
 
+
 def get_movie_info
   puts "type a movie:"
   movie = gets.chomp
   Movie::MOVIES.each do |film|
-   "#{film.info if film.title == movie}"
+   puts "#{film.info if film.title == movie}"
    puts ""
   end
 end
 
-get_movie_info
+def list_movies
+  Movie::MOVIES.each_with_index do |film, i|
+   puts "#{i+1}: #{film.title}"
+   puts ""
+  end
+end
+
+def help
+  puts "Welcome to Help!"
+  puts "Available Commands"
+  puts "help => Takes you to this help page"
+  puts "list => Lists the songs in the juke box"
+  puts "movie => Get information on a specific movie"
+  puts "exit => Leave the program"
+end
+
+def exit
+  puts "Goodbye"
+end
+
+def run_movie_program(command)
+  case command
+    when "help"
+      help
+    when "list"
+      list_movies
+    when "movie"
+      get_movie_info
+    when "exit"
+      exit
+    else
+      help
+  end
+end
+
+def command
+  puts "Please enter a command:"
+  command = gets.downcase.strip
+  command
+end
+
+def run
+  puts "Welcome! What do you want to do?"
+  loop do
+    choice = command
+    run_movie_program(choice)
+    break if choice == "exit"
+  end
+end
+
+run
+
+
