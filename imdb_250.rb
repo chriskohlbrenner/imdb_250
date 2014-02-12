@@ -46,4 +46,13 @@ top_250_array[0..3].each_with_index do |link, i|
 end
 #"#{i+1}"
 
-Movie::MOVIES.collect {|film| "#{film.info} \n"}
+def get_movie_info
+  puts "type a movie:"
+  movie = gets.chomp
+  Movie::MOVIES.each do |film|
+   "#{film.info if film.title == movie}"
+   puts ""
+  end
+end
+
+get_movie_info
